@@ -8,7 +8,7 @@
         "price": 99.99,
         "instructor": "John Doe",
         "isFeatured": true,
-        "image": "/courses/guitar.jpg" 
+        "image": "/courses/guitar.jpg"
       },
       {
         "id": 2,
@@ -18,7 +18,7 @@
         "price": 109.99,
         "instructor": "Jane Smith",
         "isFeatured": false,
-        "image": "/courses/piano.jpg" 
+        "image": "/courses/piano.jpg"
       },
       {
         "id": 3,
@@ -28,7 +28,7 @@
         "price": 119.99,
         "instructor": "Emily Johnson",
         "isFeatured": true,
-        "image": "/courses/vocalist.jpg" 
+        "image": "/courses/vocalist.jpg"
       },
       {
         "id": 4,
@@ -94,7 +94,7 @@
         "id": 10,
         "title": "Blues Guitar Techniques",
         "slug": "blues-guitar-techniques",
-        "description": "Discover the techniques of blues guitar to add soul and depth to your playing.",
+        "description": "Discover the techniques of blues guitar to add soul and depth to your playing",
         "price": 189.99,
         "instructor": "Ethan Moore",
         "isFeatured": true,
@@ -102,4 +102,3 @@
       }
     ]
   }
-  
