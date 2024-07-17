@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import CourseContent from '@/components/CourseContent';
 import { databases,Query } from '@/lib/appwrite';
 import { Video } from '@/interface/interface';
-
+import { usePathname } from 'next/navigation'
+import { split } from 'postcss/lib/list';
 
 const Home: NextPage = () => {
   // const [selectedCategory, setSelectedCategory] = useState<string>("Basic");
@@ -41,6 +42,9 @@ const Home: NextPage = () => {
   //   fetchVideos(selectedCategory);
   // }, [selectedCategory]);
 
+  const pathname = usePathname();
+  const content = pathname.split('/').pop() || '/';
+
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   const fetchVideo = async (level: string, number: number) => {
@@ -49,8 +53,9 @@ const Home: NextPage = () => {
         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
         process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID!,
         [
-          // Query.equal('level', level),
-          // Query.equal('number', number)
+          Query.equal('title', content),
+          Query.equal('level', level),
+          Query.equal('number', number)
         ]
       );
 
@@ -81,14 +86,13 @@ const Home: NextPage = () => {
 
   console.log(selectedVideo?.url);
 
-
   return (
     <div className="min-h-screen bg-black py-12 pt-36 flex ">
       <CourseContent onSelectVideo={fetchVideo} />
       <div className="flex flex-col flex-1 p-4">
         {selectedVideo ? (
           <div key={selectedVideo.$id} className="my-4">
-            <h3 className="text-4xl font-bold text-white mb-10">{selectedVideo.title} - {selectedVideo.number}</h3>
+            <h3 className="text-4xl font-bold text-white mb-10">{content} - {selectedVideo.number}</h3>
             <div className="aspect-w-16 aspect-h-9 bg-green-50">
               {/* <iframe
                 src={selectedVideo.url}
@@ -114,7 +118,9 @@ const Home: NextPage = () => {
             </div>
           </div>
         ) : (
-          <p className='flex items-end ml-10 text-white'>Select a video to view</p>
+          <h1
+            className="mt-20 md:mt-0 text-3xl md:text-7xl font-bold  text-transparent text-neutral-400"
+            >Choose Video to Begin</h1>
         )}
       </div>
     </div>
