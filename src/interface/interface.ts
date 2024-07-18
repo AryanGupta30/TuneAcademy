@@ -6,3 +6,15 @@ export interface Video extends Models.Document {
     number: number;
     url: string;
 }
+
+export interface Course extends Models.Document {
+    id: string;
+    title: string;
+    slug: string;
+    description: string;
+    price: number;
+    instructor: string;
+    isFeatured: boolean;
+    image: string;
+    domain: string;
+}

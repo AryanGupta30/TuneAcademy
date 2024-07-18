@@ -1,50 +1,16 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import type { NextPage } from 'next';
 import CourseContent from '@/components/CourseContent';
 import { databases,Query } from '@/lib/appwrite';
 import { Video } from '@/interface/interface';
 import { usePathname } from 'next/navigation'
-import { split } from 'postcss/lib/list';
 
 const Home: NextPage = () => {
-  // const [selectedCategory, setSelectedCategory] = useState<string>("Basic");
-
-  // const handleVideoClick = (video: string) => {
-  //   setSelectedCategory(video);
-  // };
-  // const [videos, setVideos] = useState<Video[]>([]);
-
-  // useEffect(() => {
-  //   const fetchVideos = async (category: string) => {
-  //     try {
-  //       const response = await databases.listDocuments(
-  //         process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-  //         process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID!,
-  //         []);
-  //         if (response && response.documents) {
-  //           const mappedVideos: Video[] = response.documents.map((doc) => ({
-  //             $id: doc.$id,
-  //             title: doc.title ?? '',
-  //             level:doc.level??'',
-  //             number:doc.number??'', // Adjust if title might be null or undefined
-  //             url: doc.url ?? '', // Adjust if url might be null or undefined
-  //           }));
-  //           setVideos(mappedVideos);
-  //         }
-  //     } catch (error) {
-  //       alert('Failed to fetch videos:');
-  //       console.error('Failed to fetch videos:', error);
-  //     }
-  //   };
-
-  //   fetchVideos(selectedCategory);
-  // }, [selectedCategory]);
-
   const pathname = usePathname();
   const content = pathname.split('/').pop() || '/';
-
+  console.log(content);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   const fetchVideo = async (level: string, number: number) => {
@@ -94,32 +60,15 @@ const Home: NextPage = () => {
           <div key={selectedVideo.$id} className="my-4">
             <h3 className="text-4xl font-bold text-white mb-10">{content} - {selectedVideo.number}</h3>
             <div className="aspect-w-16 aspect-h-9 bg-green-50">
-              {/* <iframe
-                src={selectedVideo.url}
-                title={selectedVideo.title}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe> */}
               <video controls className="w-full h-auto">
               <source src={selectedVideo.url} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-            {/* <video  controls preload="none">
-              <source src={selectedVideo.url} type="video/mp4" />
-              <track
-                src={selectedVideo.url}
-                kind="subtitles"
-                srcLang="en"
-                label="English"
-              />
-              Your browser does not support the video tag.
-            </video> */}
             </div>
           </div>
         ) : (
           <h1
-            className="mt-20 md:mt-0 text-3xl md:text-7xl font-bold  text-transparent text-neutral-400"
+            className="mt-20 md:mt-0 text-3xl md:text-7xl font-bold  text-transparent text-neutral-200"
             >Choose Video to Begin</h1>
         )}
       </div>

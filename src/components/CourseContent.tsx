@@ -5,7 +5,7 @@ interface NavbarProps {
   onSelectVideo: (level: string, number: number) => void;
 }
 
-  const CourseContent: React.FC<NavbarProps> = ({ onSelectVideo }) => {
+const CourseContent: React.FC<NavbarProps> = ({ onSelectVideo }) => {
   const [openTab, setOpenTab] = useState<string | null>(null);
 
   const toggleTab = (tab: string) => {
