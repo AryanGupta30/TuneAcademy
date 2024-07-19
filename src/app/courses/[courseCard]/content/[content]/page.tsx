@@ -68,7 +68,7 @@ const Home: NextPage = () => {
           </div>
         ) : (
           <h1
-            className="mt-20 md:mt-0 text-3xl md:text-7xl font-bold  text-transparent text-neutral-200"
+            className="mt-20 md:mt-0 text-3xl md:text-7xl font-bold  text-transparent text-slate-400"
             >Choose Video to Begin</h1>
         )}
       </div>
