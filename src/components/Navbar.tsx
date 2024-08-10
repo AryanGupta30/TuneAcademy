@@ -36,13 +36,13 @@ function Navbar({ className }: { className?: string }) {
             item="Contact Us"
           ></MenuItem>
         </Link>
-        <Link href="/sign-in" key="sign-in">
+        {/* <Link href="/sign-in" key="sign-in">
           <MenuItem
             setActive={setActive}
             active={active}
             item="Sign In"
           ></MenuItem>
-        </Link>
+        </Link> */}
       </Menu>
     </div>
   );
